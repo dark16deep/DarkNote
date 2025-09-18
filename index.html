@@ -18,14 +18,11 @@
     </div>
     <div class="menu">≡</div>
   </div>
-
-
+  
  <!-- Configs Section -->
 <div class="card">
   <h2>Configs</h2>
-  <div id="configs-list">
-    {{CONFIGS_FILES}}
-  </div>
+  <div id="configs-list"></div>
   <!-- Link pindah ke halaman lengkap -->
   <a href="configs.html" class="read-more-btn">Selengkapnya</a>
 </div>
@@ -33,9 +30,7 @@
 <!-- Aplikasi Section -->
 <div class="card">
   <h2>Aplikasi</h2>
-  <div id="aplikasi-list">
-    {{APLIKASI_FILES}}
-  </div>
+  <div id="aplikasi-list"></div>
   <!-- Link pindah ke halaman lengkap -->
   <a href="aplikasi.html" class="read-more-btn">Selengkapnya</a>
 </div>
@@ -44,35 +39,39 @@
   <div class="footer">
     COPYRIGHT ©2025 <a href="index.html" style="text-decoration:none;">ƊƛƦƘƝƠƬЄ</a> BY AANRISKI™
   </div>
+  
+<script>
+// List file (ubah sesuai nama file di folder lo)
+const CONFIGS_FILES = ["config1.json", "config2.json"];
+const APLIKASI_FILES = ["app1.zip", "app2.zip"];
 
-  <script>
-    // Fungsi tampilkan sebagian file
-    function setupLoadMore(listId, btnId, initial = 5) {
-      const container = document.getElementById(listId);
-      const items = Array.from(container.children);
-      let visibleCount = initial;
+// Fungsi generate list file
+function generateList(files, folder, containerId) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
 
-      // sembunyikan item lebih dari initial
-      items.forEach((item, idx) => {
-        if (idx >= visibleCount) item.style.display = 'none';
-      });
+  if (files.length === 0) {
+    container.innerHTML = "<p>Folder kosong</p>";
+    return;
+  }
 
-      const btn = document.getElementById(btnId);
-      if (!btn) return;
+  let html = "";
+  files.forEach(f => {
+    html += `
+      <div class="download-item">
+        <span>${f}</span>
+        <a href="${folder}/${f}" download>Download</a>
+      </div>
+    `;
+  });
 
-      btn.addEventListener('click', (e) => {
-        e.preventDefault(); // jangan reload halaman
-        visibleCount += initial;
-        items.forEach((item, idx) => {
-          if (idx < visibleCount) item.style.display = 'flex';
-        });
-        if (visibleCount >= items.length) btn.style.display = 'none';
-      });
-    }
+  container.innerHTML = html;
+}
 
-    setupLoadMore('configs-list', 'load-configs-btn', 5);
-    setupLoadMore('aplikasi-list', 'load-aplikasi-btn', 5);
-  </script>
+// Generate untuk masing-masing folder
+generateList(CONFIGS_FILES, "files/configs", "configs-list");
+generateList(APLIKASI_FILES, "files/aplikasi", "aplikasi-list");
+</script>
 
 </body>
 </html>
