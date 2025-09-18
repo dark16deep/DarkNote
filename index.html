@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Darknote - Download Page</title>
+  <link rel="icon" href="/img/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="header">
+    <div style="display:flex; align-items:center;">
+      <img src="/img/darknote.png" alt="Logo">
+      <a href="/index.html" style="text-decoration:none;">
+      <span class="brand">ƊƛƦƘƝƠƬЄ</span></a>
+    </div>
+    <div class="menu">≡</div>
+  </div>
+
+
+ <!-- Configs Section -->
+<div class="card">
+  <h2>Configs</h2>
+  <div id="configs-list">
+    {{CONFIGS_FILES}}
+  </div>
+  <!-- Link pindah ke halaman lengkap -->
+  <a href="/configs.html" class="read-more-btn">Selengkapnya</a>
+</div>
+
+<!-- Aplikasi Section -->
+<div class="card">
+  <h2>Aplikasi</h2>
+  <div id="aplikasi-list">
+    {{APLIKASI_FILES}}
+  </div>
+  <!-- Link pindah ke halaman lengkap -->
+  <a href="/aplikasi.html" class="read-more-btn">Selengkapnya</a>
+</div>
+
+  <!-- Footer -->
+  <div class="footer">
+    COPYRIGHT ©2025 <a href="/index.html" style="text-decoration:none;">ƊƛƦƘƝƠƬЄ</a> BY AANRISKI™
+  </div>
+
+  <script>
+    // Fungsi tampilkan sebagian file
+    function setupLoadMore(listId, btnId, initial = 5) {
+      const container = document.getElementById(listId);
+      const items = Array.from(container.children);
+      let visibleCount = initial;
+
+      // sembunyikan item lebih dari initial
+      items.forEach((item, idx) => {
+        if (idx >= visibleCount) item.style.display = 'none';
+      });
+
+      const btn = document.getElementById(btnId);
+      if (!btn) return;
+
+      btn.addEventListener('click', (e) => {
+        e.preventDefault(); // jangan reload halaman
+        visibleCount += initial;
+        items.forEach((item, idx) => {
+          if (idx < visibleCount) item.style.display = 'flex';
+        });
+        if (visibleCount >= items.length) btn.style.display = 'none';
+      });
+    }
+
+    setupLoadMore('configs-list', 'load-configs-btn', 5);
+    setupLoadMore('aplikasi-list', 'load-aplikasi-btn', 5);
+  </script>
+
+</body>
+</html>
