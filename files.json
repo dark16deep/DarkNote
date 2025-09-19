@@ -1,5 +1,11 @@
 {
-  "aplikasi": [],
+  "aplikasi": [
+    {
+      "name": "⚙️ GGuardian-Blue.apk",
+      "path": "files/aplikasi/⚙️ GGuardian-Blue.apk",
+      "date": "2025-09-19 15:11"
+    }
+  ],
   "configs": [
     {
       "name": "BYU OPOK 2 🇮🇩.ehi",
