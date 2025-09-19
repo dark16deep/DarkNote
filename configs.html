@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Configs - Darknote</title>
   <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+
+  <script>
+    const savedTheme = localStorage.getItem('theme') || 'default';
+    document.documentElement.classList.add('theme-' + savedTheme);
+  </script>
+
+  <script src="js/theme.js"></script>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -13,21 +20,29 @@
   <div class="header">
     <div style="display:flex; align-items:center;">
       <img src="img/darknote.png" alt="Logo">
-      <a href="index.html" style="text-decoration:none;">
-      <span class="brand">ƊƛƦƘƝƠƬЄ</span></a>
+      <a href="/index.html" style="text-decoration:none;">
+        <span class="brand">ƊƛƦƘƝƠƬЄ</span>
+      </a>
     </div>
-    <div class="menu">≡</div>
+     <div class="menu">≡</div>
   </div>
+
+  <!-- Theme Buttons -->
+  <div id="theme-buttons-container"></div> 
 
   <!-- Configs Lengkap -->
   <div class="card">
     <h2>Configs Lengkap</h2>
-    <div id="configs-list"></div>
-    <a href="index.html" class="read-more-btn">Kembali</a>
+    <div id="configs-list">
+      {{CONFIGS_FILES}}
+    </div>
+    <a href="/index.html" class="read-more-btn">Kembali</a>
   </div>
-    <!-- Footer -->
+
+  <!-- Footer -->
   <div class="footer">
-    COPYRIGHT ©2025 <a href="index.html" style="text-decoration:none;">ƊƛƦƘƝƠƬЄ</a> BY AANRISKI™
+    COPYRIGHT ©2025 <a href="/index.html" style="text-decoration:none;">ƊƛƦƘƝƠƬЄ</a> BY AANRISKI™
   </div>
+
 </body>
 </html>
