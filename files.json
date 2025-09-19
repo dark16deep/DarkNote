@@ -1,0 +1,14 @@
+{
+  "aplikasi": [
+    { "name": "app1.apk", "path": "files/aplikasi/app1.apk" },
+    { "name": "app2.apk", "path": "files/aplikasi/app2.apk" }
+  ],
+  "configs": [
+    { "name": "config1.zip", "path": "files/configs/config1.zip" },
+    { "name": "config2.zip", "path": "files/configs/config2.zip" }
+  ],
+  "scripts": [
+    { "name": "script1.sh", "path": "files/scripts/script1.sh" },
+    { "name": "script2.sh", "path": "files/scripts/script2.sh" }
+  ]
+}
