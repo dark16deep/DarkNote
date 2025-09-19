@@ -3,8 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Darknote - Download Page</title>
+  <title>DarkNote - Page</title>
   <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+
+  <!-- Ambil tema terakhir dari localStorage dan terapkan ke <html> -->
+  <script>
+    const savedTheme = localStorage.getItem('theme') || 'default';
+    document.documentElement.classList.add('theme-' + savedTheme);
+  </script>
+
+  <!-- Script eksternal untuk mengatur tema -->
+  <script src="js/theme.js"></script>
+
+  <!-- Stylesheet utama -->
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -14,64 +25,75 @@
     <div style="display:flex; align-items:center;">
       <img src="img/darknote.png" alt="Logo">
       <a href="index.html" style="text-decoration:none;">
-      <span class="brand">ƊƛƦƘƝƠƬЄ</span></a>
-    </div>
-    <div class="menu">≡</div>
+        <span class="brand">ƊƛƦƘƝƠƬЄ</span>
+      </a>
+      </div>
+      <div class="menu">≡</div>
   </div>
-  
- <!-- Configs Section -->
-<div class="card">
-  <h2>Configs</h2>
-  <div id="configs-list"></div>
-  <!-- Link pindah ke halaman lengkap -->
-  <a href="configs.html" class="read-more-btn">Selengkapnya</a>
-</div>
 
-<!-- Aplikasi Section -->
-<div class="card">
-  <h2>Aplikasi</h2>
-  <div id="aplikasi-list"></div>
-  <!-- Link pindah ke halaman lengkap -->
-  <a href="aplikasi.html" class="read-more-btn">Selengkapnya</a>
-</div>
+  <!-- Theme Buttons -->
+  <div id="theme-buttons-container"></div> 
+
+  <!-- Aplikasi Section -->
+  <div class="card">
+    <h2>Aplikasi</h2>
+    <div id="aplikasi-list">
+      {{APLIKASI_FILES}}
+    </div>
+    <a href="aplikasi.html" class="read-more-btn">Selengkapnya</a>
+  </div>
+
+  <!-- Configs Section -->
+  <div class="card">
+    <h2>Configs</h2>
+    <div id="configs-list">
+      {{CONFIGS_FILES}}
+    </div>
+    <a href="configs.html" class="read-more-btn">Selengkapnya</a>
+  </div>
+
+  <!-- Scripts Section -->
+  <div class="card">
+    <h2>Scripts</h2>
+    <div id="scripts-list">
+      {{SCRIPTS_FILES}}
+    </div>
+    <a href="scripts.html" class="read-more-btn">Selengkapnya</a>
+  </div>
 
   <!-- Footer -->
   <div class="footer">
     COPYRIGHT ©2025 <a href="index.html" style="text-decoration:none;">ƊƛƦƘƝƠƬЄ</a> BY AANRISKI™
   </div>
-  
-<script>
-// List file (ubah sesuai nama file di folder lo)
-const CONFIGS_FILES = ["config1.json", "config2.json"];
-const APLIKASI_FILES = ["app1.zip", "app2.zip"];
 
-// Fungsi generate list file
-function generateList(files, folder, containerId) {
-  const container = document.getElementById(containerId);
-  if (!container) return;
+  <!-- Script Load More -->
+  <script>
+    function setupLoadMore(listId, btnId, initial = 5) {
+      const container = document.getElementById(listId);
+      const items = Array.from(container.children);
+      let visibleCount = initial;
 
-  if (files.length === 0) {
-    container.innerHTML = "<p>Folder kosong</p>";
-    return;
-  }
+      items.forEach((item, idx) => {
+        if (idx >= visibleCount) item.style.display = 'none';
+      });
 
-  let html = "";
-  files.forEach(f => {
-    html += `
-      <div class="download-item">
-        <span>${f}</span>
-        <a href="${folder}/${f}" download>Download</a>
-      </div>
-    `;
-  });
+      const btn = document.getElementById(btnId);
+      if (!btn) return;
 
-  container.innerHTML = html;
-}
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        visibleCount += initial;
+        items.forEach((item, idx) => {
+          if (idx < visibleCount) item.style.display = 'flex';
+        });
+        if (visibleCount >= items.length) btn.style.display = 'none';
+      });
+    }
 
-// Generate untuk masing-masing folder
-generateList(CONFIGS_FILES, "files/configs", "configs-list");
-generateList(APLIKASI_FILES, "files/aplikasi", "aplikasi-list");
-</script>
+    setupLoadMore('configs-list', 'load-configs-btn', 5);
+    setupLoadMore('aplikasi-list', 'load-aplikasi-btn', 5);
+    setupLoadMore('scripts-list', 'load-scripts-btn', 5);
+  </script>
 
 </body>
 </html>
