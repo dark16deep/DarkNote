@@ -1,24 +1,25 @@
 #!/bin/bash
-set -e  # berhenti kalau ada error
+set -e
 
-# Masuk ke folder repo
+# Masuk ke repo
 cd ~/DarkNote
 
-# Simpan perubahan sementara kalau ada (stash)
+echo "🔹 Memeriksa perubahan lokal..."
+# Stash perubahan sementara supaya pull/rebase aman
 git stash push -m "auto-stash before pull" || true
 
-# Tarik update terbaru dari GitHub
-git pull --rebase origin main
+echo "🔹 Menarik update terbaru dari GitHub..."
+git pull --rebase origin main || true
 
-# Apply kembali perubahan lokal jika ada
+# Apply kembali stash jika ada
 git stash pop || true
 
-# Jalankan script Python
+echo "🔹 Menjalankan generate_files.py..."
 python generate_files.py
 
-# Lihat file json
-cat files.json
+echo "🔹 Memeriksa files.json..."
 ls -l files.json
+cat files.json
 
 # Set Git user
 git config user.name "github-actions[bot]"
@@ -27,13 +28,14 @@ git config user.email "github-actions[bot]@users.noreply.github.com"
 # Stage files.json
 git add files.json
 
-# Commit & push jika ada perubahan
+# Commit & push kalau ada perubahan
 if ! git diff --cached --quiet; then
   COMMIT_MSG="⚡ Update otomatis $(date '+%Y-%m-%d %H:%M:%S')"
   git commit -m "$COMMIT_MSG"
-  echo "✅ Commit dibuat: $COMMIT_MSG"
   git push origin main
-  echo "🚀 Perubahan berhasil dipush ke GitHub!"
+  echo "✅ Perubahan berhasil dipush ke GitHub!"
 else
   echo "✅ Tidak ada perubahan untuk di-commit."
 fi
+
+echo "🔹 Selesai. Repo sekarang sinkron dengan GitHub."
