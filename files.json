@@ -1,14 +1,58 @@
 {
   "aplikasi": [
-    { "name": "app1.apk", "path": "files/aplikasi/app1.apk" },
-    { "name": "app2.apk", "path": "files/aplikasi/app2.apk" }
+    {
+      "name": "aplikasi",
+      "path": "files/aplikasi/aplikasi",
+      "date": "2025-09-19 14:23"
+    }
   ],
   "configs": [
-    { "name": "config1.zip", "path": "files/configs/config1.zip" },
-    { "name": "config2.zip", "path": "files/configs/config2.zip" }
+    {
+      "name": "BYU OPOK 2 🇮🇩.ehi",
+      "path": "files/configs/BYU OPOK 2 🇮🇩.ehi",
+      "date": "2025-09-19 14:23"
+    },
+    {
+      "name": "TSEL OPOK 2 🇮🇩.ehi",
+      "path": "files/configs/TSEL OPOK 2 🇮🇩.ehi",
+      "date": "2025-09-19 14:23"
+    },
+    {
+      "name": "BYU OPOK 🇮🇩.ehi",
+      "path": "files/configs/BYU OPOK 🇮🇩.ehi",
+      "date": "2025-09-19 14:23"
+    },
+    {
+      "name": "TSEL OPOK 1 🇮🇩.ehi",
+      "path": "files/configs/TSEL OPOK 1 🇮🇩.ehi",
+      "date": "2025-09-19 14:23"
+    },
+    {
+      "name": "configs",
+      "path": "files/configs/configs",
+      "date": "2025-09-19 14:23"
+    }
   ],
   "scripts": [
-    { "name": "script1.sh", "path": "files/scripts/script1.sh" },
-    { "name": "script2.sh", "path": "files/scripts/script2.sh" }
+    {
+      "name": "🎟️.AdBlock(DarkNote).js",
+      "path": "files/scripts/🎟️.AdBlock(DarkNote).js",
+      "date": "2025-09-19 14:23"
+    },
+    {
+      "name": "scripts",
+      "path": "files/scripts/scripts",
+      "date": "2025-09-19 14:23"
+    },
+    {
+      "name": "🎟️.DarkMode(DarkNote).js",
+      "path": "files/scripts/🎟️.DarkMode(DarkNote).js",
+      "date": "2025-09-19 14:23"
+    },
+    {
+      "name": "🎟️.Unlok-Button(DarkNote).js",
+      "path": "files/scripts/🎟️.Unlok-Button(DarkNote).js",
+      "date": "2025-09-19 14:23"
+    }
   ]
 }
