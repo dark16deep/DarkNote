@@ -1,5 +1,23 @@
 {
-  "aplikasi": [],
-  "configs": [],
-  "scripts": []
+  "aplikasi": [
+    {
+      "name": ".aplikasi",
+      "path": "files/aplikasi/.aplikasi",
+      "date": "2025-09-19 16:28"
+    }
+  ],
+  "configs": [
+    {
+      "name": ".configs",
+      "path": "files/configs/.configs",
+      "date": "2025-09-19 16:28"
+    }
+  ],
+  "scripts": [
+    {
+      "name": ".scripts",
+      "path": "files/scripts/.scripts",
+      "date": "2025-09-19 16:28"
+    }
+  ]
 }
