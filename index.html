@@ -34,37 +34,40 @@
   <!-- Theme Buttons -->
   <div id="theme-buttons-container"></div> 
 
-  <!-- Aplikasi Section -->
-  <div class="card">
-    <h2>Aplikasi</h2>
-    <div id="aplikasi-list">
-      {{APLIKASI_FILES}}
-    </div>
-    <a href="/aplikasi.html" class="read-more-btn">Selengkapnya</a>
-  </div>
+<!-- Aplikasi Section -->
+<div class="card">
+  <h2>Aplikasi</h2>
+  <div id="aplikasi-list"></div>
+  <a href="aplikasi.html" class="read-more-btn">Selengkapnya</a>
+</div>
 
-  <!-- Configs Section -->
-  <div class="card">
-    <h2>Configs</h2>
-    <div id="configs-list">
-      {{CONFIGS_FILES}}
-    </div>
-    <a href="/configs.html" class="read-more-btn">Selengkapnya</a>
-  </div>
+<!-- Configs Section -->
+<div class="card">
+  <h2>Configs</h2>
+  <div id="configs-list"></div>
+  <a href="configs.html" class="read-more-btn">Selengkapnya</a>
+</div>
 
-  <!-- Scripts Section -->
-  <div class="card">
-    <h2>Scripts</h2>
-    <div id="scripts-list">
-      {{SCRIPTS_FILES}}
-    </div>
-    <a href="/scripts.html" class="read-more-btn">Selengkapnya</a>
-  </div>
+<!-- Scripts Section -->
+<div class="card">
+  <h2>Scripts</h2>
+  <div id="scripts-list"></div>
+  <a href="scripts.html" class="read-more-btn">Selengkapnya</a>
+</div>
 
   <!-- Footer -->
   <div class="footer">
     COPYRIGHT ©2025 <a href="/index.html" style="text-decoration:none;">ƊƛƦƘƝƠƬЄ</a> BY AANRISKI™
   </div>
+
+
+<!-- Script untuk load list -->
+<script src="js/list.js"></script>
+<script>
+  loadFiles("aplikasi", "aplikasi-list", 5);
+  loadFiles("configs", "configs-list", 5);
+  loadFiles("scripts", "scripts-list", 5);
+</script>
 
   <!-- Script Load More -->
   <script>
