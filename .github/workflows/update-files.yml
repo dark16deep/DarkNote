@@ -4,28 +4,29 @@ on:
   push:
     branches: [ main ]
     paths:
-      - "files/**"     # hanya jalan kalau ada file di folder files yang berubah
-  workflow_dispatch:    # bisa dijalankan manual dari tab Actions
+      - "files/**"      # hanya jalan kalau ada perubahan di folder files
+  workflow_dispatch:    # bisa dijalankan manual
 
 jobs:
-  build:
+  update-json:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
 
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
 
-      - name: Generate files.json
-        run: python generate_files.py
+      - name: Install dependencies
+        run: pip install -r requirements.txt || echo "No dependencies"
 
-      - name: Commit & push files.json jika berubah
+      - name: Run Python to update JSON
+        run: python generate_files.py   # <-- ini bikin file JSON terbaru
+
+      - name: Commit & push JSON
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
