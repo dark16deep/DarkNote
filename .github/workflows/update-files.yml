@@ -4,27 +4,31 @@ on:
   push:
     branches: [ main ]
     paths:
-      - "files/**"      # hanya jalan kalau ada perubahan di folder files
-  workflow_dispatch:    # bisa dijalankan manual
+      - "files/**"      # workflow ini hanya jalan kalau ada perubahan di folder files
+  workflow_dispatch:    # bisa dijalankan manual juga lewat GitHub UI
 
 jobs:
   update-json:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # pake runner Ubuntu terbaru
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
+        # <-- checkout repo supaya bisa baca & ubah files.json
 
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
+        # <-- install Python versi 3.x
 
       - name: Install dependencies
         run: pip install -r requirements.txt || echo "No dependencies"
+        # <-- install library Python kalau ada, kalau ga ada tetep lanjut
 
       - name: Run Python to update JSON
-        run: python generate_files.py   # <-- ini bikin file JSON terbaru
+        run: python generate_files.py
+        # <-- jalanin script Python untuk bikin/update files.json
 
       # ================= DEBUG STEPS =================
       - name: List folder contents for debug
@@ -39,11 +43,12 @@ jobs:
             fi
             echo "-------------------"
           done
-        # <-- Step ini ngecek folder-folder ada isinya atau tidak di runner
+        # <-- step ini ngecek folder-folder ada isinya atau tidak di runner
+        #     berguna buat debugging kalau generate_files.py gagal bikin file
 
       - name: Show generated files.json
         run: cat files.json
-        # <-- Step ini nge-print isi files.json di log supaya bisa dicek apakah Python jalan
+        # <-- nge-print isi files.json di log supaya bisa dicek hasil generate Python
       # =================================================
 
       - name: Commit & push JSON
@@ -61,3 +66,8 @@ jobs:
           git commit -m "⚡ Auto-update files.json ($(date '+%Y-%m-%d %H:%M:%S'))"
           git push https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git HEAD:main || \
           echo "⚠️ Push gagal, workflow tetap selesai."
+        # <-- step ini commit & push files.json ke main
+        #     catatan penting:
+        #     1. GITHUB_TOKEN default punya akses write ke repo private/public
+        #     2. Push bisa gagal kalau repo protected branch atau PAT/permission kurang
+        #     3. `|| echo ...` supaya workflow tetep selesai walau push gagal
