@@ -1,6 +1,11 @@
 {
   "aplikasi": [
     {
+      "name": "GGuardian-blue.apk",
+      "path": "files/aplikasi/GGuardian-blue.apk",
+      "date": "2025-09-20 10:48"
+    },
+    {
       "name": ".aplikasi",
       "path": "files/aplikasi/.aplikasi",
       "date": "2025-09-20 09:34"
