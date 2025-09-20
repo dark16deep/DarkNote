@@ -3,6 +3,9 @@ name: Update Files JSON
 on:
   push:
     branches: [ main ]
+    paths:
+      - "files/**"     # hanya jalan kalau ada file di folder files yang berubah
+  workflow_dispatch:    # bisa dijalankan manual dari tab Actions
 
 jobs:
   build:
@@ -12,14 +15,14 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0   # penting biar bisa push balik
+          fetch-depth: 0
 
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
 
-      - name: Jalankan generate_files.py
+      - name: Generate files.json
         run: python generate_files.py
 
       - name: Commit & push files.json jika berubah
@@ -34,6 +37,6 @@ jobs:
             echo "✅ Tidak ada perubahan untuk di-commit."
             exit 0
           fi
-          git commit -m "Auto-update files.json"
+          git commit -m "⚡ Auto-update files.json ($(date '+%Y-%m-%d %H:%M:%S'))"
           git push https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git HEAD:main || \
           echo "⚠️ Push gagal, workflow tetap selesai."
