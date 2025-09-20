@@ -1,63 +1,57 @@
 {
   "aplikasi": [
     {
-      "name": "🎨 Barcode 1.22.0.apk",
-      "path": "https://sfile.mobi/9UqYtCK3Ac3",
-      "date": "2025-09-19 16:28"
-    },
-    {
-      "name": "🎨 Color Tool For Devs 2.1.apk",
-      "path": "https://sfile.mobi/662WktSLRui",
-      "date": "2025-09-19 16:28"
-    },
-    {
-      "name": "🎨 AntiSplit-M.v2.0.7.apk",
-      "path": "https://sfile.mobi/3PGV4i76haj",
-      "date": "2025-09-19 16:28"
-    },
-    {
-      "name": "🎨 XRecorder 120 fps.apk",
-      "path": "https://sfile.mobi/7wGX5j4oIoL",
-      "date": "2025-09-19 16:28"
-    },
-    {
-      "name": "🎨 MT Manager 2.14.5 VIP.apk",
-      "path": "https://sfile.mobi/a1OYrbIA0gM",
-      "date": "2025-09-19 16:28"
-    },
-    {
-      "name": "🎨 Manajer NP 3.0.64.apk",
-      "path": "https://sfile.mobi/738WMb229US",
-      "date": "2025-09-19 16:28"
-    },
-    {
-      "name": "🎨 Apktool M 2.4.0-240908.apk",
-      "path": "https://sfile.mobi/3eKUDUKxksM",
-      "date": "2025-09-19 16:28"
-    },
-    {
-      "name": "🎨 DarkTunnel v1.0.23 29 No-Ads.apk",
-      "path": "https://sfile.mobi/8BaSaZtECAi",
-      "date": "2025-09-19 16:28"
-    },
-    {
-      "name": "🎨 DarkTunnel v1.0.19 25 No-Ads.apk",
-      "path": "https://sfile.mobi/6dqQRfBHgWr",
-      "date": "2025-09-19 16:28"
+      "name": ".aplikasi",
+      "path": "files/aplikasi/.aplikasi",
+      "date": "2025-09-20 08:06"
     }
   ],
   "configs": [
     {
       "name": ".configs",
       "path": "files/configs/.configs",
-      "date": "2025-09-19 16:28"
+      "date": "2025-09-20 08:06"
     }
   ],
   "scripts": [
     {
+      "name": "🎟️ Ad-Block (DarkNote).js",
+      "path": "files/scripts/🎟️ Ad-Block (DarkNote).js",
+      "date": "2025-09-20 08:06"
+    },
+    {
       "name": ".scripts",
       "path": "files/scripts/.scripts",
-      "date": "2025-09-19 16:28"
+      "date": "2025-09-20 08:06"
+    },
+    {
+      "name": "🎟️ Unlok Button (DarkNote).js",
+      "path": "files/scripts/🎟️ Unlok Button (DarkNote).js",
+      "date": "2025-09-20 08:06"
+    },
+    {
+      "name": "🎟️ DarkMode (DarkNote).js",
+      "path": "files/scripts/🎟️ DarkMode (DarkNote).js",
+      "date": "2025-09-20 08:06"
+    },
+    {
+      "name": "🎟️ Pop-Up Block (DarkNote).js",
+      "path": "files/scripts/🎟️ Pop-Up Block (DarkNote).js",
+      "date": "2025-09-20 08:06"
     }
-  ]
+  ],
+  "arsip": [
+    {
+      "name": ".arsip",
+      "path": "files/arsip/.arsip",
+      "date": "2025-09-20 08:06"
+    }
+  ],,
+  "video": [
+    {
+      "name": ".video",
+      "path": "files/video/.video",
+      "date": "2025-09-20 08:06"
+    }
+  ],
 }
