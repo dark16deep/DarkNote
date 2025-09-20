@@ -15,24 +15,22 @@ jobs:
       # ================= STEP 1: Checkout repo =================
       - name: Checkout repo
         uses: actions/checkout@v3
-        # <-- checkout repo supaya bisa baca & ubah files.json
+        with:
+          persist-credentials: true   # <-- penting supaya bisa push nanti
 
       # ================= STEP 2: Setup Python =================
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
-        # <-- install Python versi 3.x
 
       # ================= STEP 3: Install dependencies =================
       - name: Install dependencies
         run: pip install -r requirements.txt || echo "No dependencies"
-        # <-- install library Python kalau ada, kalau ga ada tetap lanjut
 
       # ================= STEP 4: Run Python script =================
       - name: Run Python to update JSON
         run: python generate_files.py
-        # <-- bikin/update files.json terbaru
 
       # ================= STEP 5: Debug folder contents =================
       - name: List folder contents for debug
@@ -47,17 +45,12 @@ jobs:
             fi
             echo "-------------------"
           done
-        # <-- cek folder-folder ada isinya atau tidak di runner
 
       - name: Show generated files.json
         run: cat files.json
-        # <-- nge-print isi files.json di log supaya bisa dicek hasil Python
 
       # ================= STEP 6: Commit & Push =================
       - name: Commit & push JSON
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_REPOSITORY: ${{ github.repository }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -67,6 +60,4 @@ jobs:
             exit 0
           fi
           git commit -m "⚡ Auto-update files.json ($(date '+%Y-%m-%d %H:%M:%S'))"
-          git push https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git HEAD:main || \
-          echo "⚠️ Push gagal, workflow tetap selesai."
-        # <-- commit & push files.json; tetap lanjut walau push gagal
+          git push origin HEAD:main
