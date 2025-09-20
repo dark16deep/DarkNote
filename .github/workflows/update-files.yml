@@ -1,49 +1,39 @@
 name: Update
 
-# Bisa dijalankan manual dan juga otomatis saat push ke main
 on:
   push:
     branches: [ main ]
-  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout repository
       - name: Checkout repo
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0  # penting biar bisa push balik
+          fetch-depth: 0   # penting biar bisa push balik
 
-      # Setup Python
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
 
-      # Jalankan script generate_files.py
       - name: Jalankan generate_files.py
         run: python generate_files.py
 
-      # Commit & Push files.json jika ada perubahan
-      - name: Commit & Push files.json
+      - name: Commit & push files.json jika berubah
         env:
-          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
         run: |
-          git config user.name "Dark16deep"
-          git config user.email "arinryder9@gmail.com"
-
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           git add files.json
-
           if git diff --cached --quiet; then
             echo "✅ Tidak ada perubahan untuk di-commit."
             exit 0
           fi
-
-          git commit -m "Auto-update files.json [ci skip]"
-
-          git push https://x-access-token:${PAT_TOKEN}@github.com/${GITHUB_REPOSITORY}.git HEAD:main || \
+          git commit -m "Auto-update files.json"
+          git push https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git HEAD:main || \
           echo "⚠️ Push gagal, workflow tetap selesai."
