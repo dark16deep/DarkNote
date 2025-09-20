@@ -8,57 +8,47 @@ paths:
 workflow_dispatch:    # bisa dijalankan manual
 
 jobs:
-update-json:
-runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-latest
 
-steps:  
-  - name: Checkout repo  
-    uses: actions/checkout@v3  
+    steps:  
+      # Checkout repo
+      - name: Checkout repo  
+        uses: actions/checkout@v3  
+        with:  
+          fetch-depth: 0  # penting biar bisa push balik  
 
-  - name: Setup Python  
-    uses: actions/setup-python@v4  
-    with:  
-      python-version: '3.x'  
+      # Setup Python
+      - name: Setup Python  
+        uses: actions/setup-python@v4  
+        with:  
+          python-version: '3.x'  
 
-  - name: Install dependencies  
-    run: pip install -r requirements.txt || echo "No dependencies"  
+      # Jalankan generate_files.py
+      - name: Jalankan generate_files.py  
+        run: python generate_files.py  
 
-  - name: Run Python to update JSON  
-    run: python generate_files.py   # <-- ini bikin file JSON terbaru  
+      # Commit & push files.json jika berubah
+      - name: Commit & Push files.json  
+        env:  
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}  
+          GITHUB_REPOSITORY: ${{ github.repository }}  
+        run: |  
+          git config user.name "github-actions[bot]"  
+          git config user.email "github-actions[bot]@users.noreply.github.com"  
 
-  # ================= DEBUG STEPS =================  
-  - name: List folder contents for debug  
-    run: |  
-      echo "=== Folder debug ==="  
-      for folder in files/aplikasi files/configs files/scripts files/video files/arsip; do  
-        echo "Folder: $folder"  
-        if [ -d "$folder" ]; then  
-          ls -l "$folder"  
-        else  
-          echo "Folder tidak ada"  
-        fi  
-        echo "-------------------"  
-      done  
-    # <-- Step ini ngecek folder-folder ada isinya atau tidak di runner  
+          # Tambahkan files.json
+          git add files.json  
 
-  - name: Show generated files.json  
-    run: cat files.json  
-    # <-- Step ini nge-print isi files.json di log supaya bisa dicek apakah Python jalan  
-  # =================================================  
+          # Cek kalau ada perubahan
+          if git diff --cached --quiet; then  
+            echo "✅ Tidak ada perubahan untuk di-commit."  
+            exit 0  
+          fi  
 
-  - name: Commit & push JSON  
-    env:  
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
-      GITHUB_REPOSITORY: ${{ github.repository }}  
-    run: |  
-      git config user.name "github-actions[bot]"  
-      git config user.email "github-actions[bot]@users.noreply.github.com"  
-      git add files.json  
-      if git diff --cached --quiet; then  
-        echo "✅ Tidak ada perubahan untuk di-commit."  
-        exit 0  
-      fi  
-      git commit -m "⚡ Auto-update files.json ($(date '+%Y-%m-%d %H:%M:%S'))"  
-      git push https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git HEAD:main || \  
-      #git push https://${{ secrets.GH_PAT }}@github.com/dark16deep/DarkNote.git HEAD:main
-      echo "⚠️ Push gagal, workflow tetap selesai."
+          # Commit perubahan
+          git commit -m "Auto-update files.json"  
+
+          # Push pake PAT
+          git push https://x-access-token:${PAT_TOKEN}@github.com/${GITHUB_REPOSITORY}.git HEAD:main || \
+          echo "⚠️ Push gagal, workflow tetap selesai."
