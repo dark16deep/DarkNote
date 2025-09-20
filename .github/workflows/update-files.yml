@@ -1,8 +1,9 @@
-name: Update Files JSON
+name: Update
 
 on:
   push:
     branches: [ main ]
+  workflow_dispatch:    # <- ini yang bikin bisa dijalankan manual
 
 jobs:
   build:
