@@ -3,7 +3,9 @@ import os, json, datetime
 FOLDERS = {
     "aplikasi": "files/aplikasi",
     "configs": "files/configs",
-    "scripts": "files/scripts"
+    "scripts": "files/scripts",
+    "video": "files/video",
+    "arsip": "files/arsip"
 }
 
 data = {}
