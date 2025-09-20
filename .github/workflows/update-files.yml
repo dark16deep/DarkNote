@@ -33,8 +33,8 @@ jobs:
           PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
         run: |
-          git config user.name "DarkNote Bot"
-          git config user.email "darknote-bot@example.com"
+          git config user.name "Dark16deep"
+          git config user.email "arinryder9@gmail.com"
 
           git add files.json
 
