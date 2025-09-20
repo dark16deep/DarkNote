@@ -26,6 +26,26 @@ jobs:
       - name: Run Python to update JSON
         run: python generate_files.py   # <-- ini bikin file JSON terbaru
 
+      # ================= DEBUG STEPS =================
+      - name: List folder contents for debug
+        run: |
+          echo "=== Folder debug ==="
+          for folder in files/aplikasi files/configs files/scripts files/video files/arsip; do
+            echo "Folder: $folder"
+            if [ -d "$folder" ]; then
+              ls -l "$folder"
+            else
+              echo "Folder tidak ada"
+            fi
+            echo "-------------------"
+          done
+        # <-- Step ini ngecek folder-folder ada isinya atau tidak di runner
+
+      - name: Show generated files.json
+        run: cat files.json
+        # <-- Step ini nge-print isi files.json di log supaya bisa dicek apakah Python jalan
+      # =================================================
+
       - name: Commit & push JSON
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
