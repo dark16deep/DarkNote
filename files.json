@@ -1,62 +1,57 @@
 {
   "aplikasi": [
     {
-      "name": "GGuardian-blue.apk",
-      "path": "files/aplikasi/GGuardian-blue.apk",
-      "date": "2025-09-20 10:48"
-    },
-    {
       "name": ".aplikasi",
       "path": "files/aplikasi/.aplikasi",
-      "date": "2025-09-20 09:34"
+      "date": "2025-09-20 10:57"
     }
   ],
   "configs": [
     {
       "name": ".configs",
       "path": "files/configs/.configs",
-      "date": "2025-09-20 09:34"
+      "date": "2025-09-20 10:57"
     }
   ],
   "scripts": [
     {
       "name": "🎟️ Ad-Block (DarkNote).js",
       "path": "files/scripts/🎟️ Ad-Block (DarkNote).js",
-      "date": "2025-09-20 09:34"
+      "date": "2025-09-20 10:57"
     },
     {
       "name": ".scripts",
       "path": "files/scripts/.scripts",
-      "date": "2025-09-20 09:34"
+      "date": "2025-09-20 10:57"
     },
     {
       "name": "🎟️ Unlok Button (DarkNote).js",
       "path": "files/scripts/🎟️ Unlok Button (DarkNote).js",
-      "date": "2025-09-20 09:34"
+      "date": "2025-09-20 10:57"
     },
     {
       "name": "🎟️ DarkMode (DarkNote).js",
       "path": "files/scripts/🎟️ DarkMode (DarkNote).js",
-      "date": "2025-09-20 09:34"
+      "date": "2025-09-20 10:57"
     },
     {
       "name": "🎟️ Pop-Up Block (DarkNote).js",
       "path": "files/scripts/🎟️ Pop-Up Block (DarkNote).js",
-      "date": "2025-09-20 09:34"
+      "date": "2025-09-20 10:57"
     }
   ],
   "video": [
     {
       "name": ".video",
       "path": "files/video/.video",
-      "date": "2025-09-20 09:34"
+      "date": "2025-09-20 10:57"
     }
   ],
   "arsip": [
     {
       "name": ".arsip",
       "path": "files/arsip/.arsip",
-      "date": "2025-09-20 09:34"
+      "date": "2025-09-20 10:57"
     }
   ]
 }
