@@ -75,6 +75,16 @@
   </div>
 
   <!-- Script Load More -->
+  <!-- Script untuk load list -->
+<script src="js/list.js"></script>
+<script>
+  loadFiles("aplikasi", "aplikasi-list", 5);
+  loadFiles("configs", "configs-list", 5);
+  loadFiles("scripts", "scripts-list", 5);
+  loadFiles("arsip", "arsip-list", 5);
+  loadFiles("video", "video-list", 5);
+</script>
+
   <script>
     function setupLoadMore(listId, btnId, initial = 5) {
       const container = document.getElementById(listId);
