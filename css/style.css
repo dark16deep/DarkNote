@@ -13,7 +13,7 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1100; /* diperbesar supaya tombol menu tidak tertutup */
+  z-index: 1100;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -22,13 +22,11 @@ body {
   border-radius: 0 0 12px 12px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.5);
 }
-
 .header img {
   width: 40px;
   height: 40px;
   border-radius: 50%;
 }
-
 .brand {
   background: linear-gradient(135deg, #00f2fe, #4facfe);
   -webkit-background-clip: text;
@@ -37,14 +35,36 @@ body {
   font-weight: bold;
   margin-left: 10px;
 }
-
 .menu {
   font-size: 28px;
   cursor: pointer;
   background: linear-gradient(135deg, #00f2fe, #4facfe);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  color: #00f2fe; /* fallback agar selalu terlihat */
+  color: #00f2fe;
+}
+
+/* ===== Card Link ===== */
+.card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  cursor: pointer;
+  /* Hilangkan highlight biru di mobile */
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.card-link:focus,
+.card-link:active {
+  outline: none;
+  box-shadow: none;
+}
+.card-link:hover .card {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.5);
 }
 
 /* ===== Card ===== */
@@ -54,10 +74,72 @@ body {
   padding: 20px;
   margin: 20px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-
 .card h2 {
   background: linear-gradient(135deg, #00f2fe, #4facfe);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 25px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+}
+.card h2::before {
+  /* content: "🔰"; */
+  margin-right: 8px;
+}
+/* ===== Download Item ===== */
+.download-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 8px 0;
+  font-size: 13px;
+}
+.download-item a {
+  background: linear-gradient(135deg, #00f2fe, #4facfe);
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.2s;
+}
+.download-item a:hover {
+  opacity: 0.85;
+}
+/* ===== Read More Button ===== */
+.read-more-btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 0px;
+  border-radius: 8px;
+  font-weight: bold;
+  background: linear-gradient(135deg, #00f2fe, #4facfe);
+  color: #fff;
+  text-decoration: none;
+  transition: 0.2s;
+  font-size: 13px;
+}
+.read-more-btn:hover {
+  opacity: 0.85;
+}
+
+/* ===== Read More Button Horizontal ===== */
+.card-horizontal {
+  display: flex;
+  justify-content: space-between; /* Judul kiri, tombol kanan */
+  align-items: center;
+  background-color: #1a1a1a;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 15px 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+.card-horizontal h2 {
+  background: var(--main-gradient); /* pake gradien tema */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 15px;
@@ -65,51 +147,20 @@ body {
   display: flex;
   align-items: center;
 }
-
-.card h2::before {
-  content: "🔰";
+.card-horizontal h2::before {
+  content: "☕";
   margin-right: 8px;
 }
-
-/* ===== Download Item ===== */
-.download-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 8px 0;
+.card-horizontal .read-more-btn {
+  padding: 6px 12px;
   font-size: 12px;
-}
-
-.download-item a {
-  background: linear-gradient(135deg, #00f2fe, #4facfe);
-  color: #fff;
-  padding: 6px 14px;
-  border-radius: 8px;
-  font-size: 12px;
-  font-weight: bold;
-  text-decoration: none;
-  transition: 0.2s;
-}
-
-.download-item a:hover {
-  opacity: 0.85;
-}
-
-/* ===== Read More Button ===== */
-.read-more-btn {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 8px 16px;
   border-radius: 8px;
   font-weight: bold;
-  background: linear-gradient(135deg, #00f2fe, #4facfe);
-  color: #fff;
   text-decoration: none;
+  color: #fff;
   transition: 0.2s;
-  font-size: 12px;
 }
-
-.read-more-btn:hover {
+.card-horizontal .read-more-btn:hover {
   opacity: 0.85;
 }
 
@@ -118,6 +169,7 @@ body {
   text-align: center;
   padding: 15px;
   font-size: 12px;
+  font-weight: 800;
   color: #aaa;
 }
 
@@ -129,7 +181,6 @@ body {
   margin: 15px 0;
   flex-wrap: wrap;
 }
-
 .theme-btn {
   border: none;
   padding: 5px 12px;
@@ -140,7 +191,6 @@ body {
   color: #fff;
   transition: 0.2s;
 }
-
 .theme-btn:hover {
   opacity: 0.85;
 }
@@ -151,8 +201,6 @@ body {
 .theme-green { --main-gradient: linear-gradient(135deg, #a8ff78, #78ffd6); }
 .theme-orange { --main-gradient: linear-gradient(135deg, #f6d365, #fda085); }
 .theme-red { --main-gradient: linear-gradient(135deg, #ff6a6a, #ff0000); }
-
-/* 🎨 Tema baru */
 .theme-pinkpurpleblue { --main-gradient: linear-gradient(135deg, #ff9a9e, #a18cd1, #4facfe); }
 .theme-neon { --main-gradient: linear-gradient(135deg, #faff00, #adff2f); }
 .theme-sunset { --main-gradient: linear-gradient(135deg, #ff512f, #f09819, #ffe259); }
@@ -168,7 +216,6 @@ body {
 /* ===== Floating Theme Buttons ===== */
 #theme-buttons-container {
   display: flex;
- /* justify-content: flex-start; */
   justify-content: center;
   gap: 10px;
   padding: 5px 25px;
@@ -178,7 +225,6 @@ body {
   z-index: 1000;
   border-radius: 0 0 10px 10px;
 }
-
 #theme-buttons-container .theme-btn {
   width: 15px;
   height: 15px;
@@ -191,7 +237,6 @@ body {
   justify-content: center;
   padding: 0;
 }
-
 #theme-buttons-container .theme-btn:hover {
   opacity: 0.8;
 }
