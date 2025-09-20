@@ -4,33 +4,37 @@ on:
   push:
     branches: [ main ]
     paths:
-      - "files/**"      # workflow ini hanya jalan kalau ada perubahan di folder files
-  workflow_dispatch:    # bisa dijalankan manual juga lewat GitHub UI
+      - "files/**"      # hanya jalan kalau ada perubahan di folder files
+  workflow_dispatch:    # bisa dijalankan manual
 
 jobs:
   update-json:
-    runs-on: ubuntu-latest  # pake runner Ubuntu terbaru
+    runs-on: ubuntu-latest
 
     steps:
+      # ================= STEP 1: Checkout repo =================
       - name: Checkout repo
         uses: actions/checkout@v3
         # <-- checkout repo supaya bisa baca & ubah files.json
 
+      # ================= STEP 2: Setup Python =================
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
         # <-- install Python versi 3.x
 
+      # ================= STEP 3: Install dependencies =================
       - name: Install dependencies
         run: pip install -r requirements.txt || echo "No dependencies"
         # <-- install library Python kalau ada, kalau ga ada tetep lanjut
 
+      # ================= STEP 4: Run Python script =================
       - name: Run Python to update JSON
         run: python generate_files.py
         # <-- jalanin script Python untuk bikin/update files.json
 
-      # ================= DEBUG STEPS =================
+      # ================= STEP 5: Debug folder contents =================
       - name: List folder contents for debug
         run: |
           echo "=== Folder debug ==="
@@ -43,17 +47,16 @@ jobs:
             fi
             echo "-------------------"
           done
-        # <-- step ini ngecek folder-folder ada isinya atau tidak di runner
-        #     berguna buat debugging kalau generate_files.py gagal bikin file
+        # <-- berguna buat cek apakah file berhasil dibuat di runner
 
       - name: Show generated files.json
         run: cat files.json
         # <-- nge-print isi files.json di log supaya bisa dicek hasil generate Python
-      # =================================================
 
+      # ================= STEP 6: Commit & Push =================
       - name: Commit & push JSON
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_PAT: ${{ secrets.GH_PAT }}       # pakai PAT untuk push
           GITHUB_REPOSITORY: ${{ github.repository }}
         run: |
           git config user.name "github-actions[bot]"
@@ -64,6 +67,8 @@ jobs:
             exit 0
           fi
           git commit -m "⚡ Auto-update files.json ($(date '+%Y-%m-%d %H:%M:%S'))"
+          git push https://x-access-token:${GH_PAT}@github.com/${GITHUB_REPOSITORY}.git HEAD:main
+          # <-- push pake PAT, pasti berhasil walau branch protected          git commit -m "⚡ Auto-update files.json ($(date '+%Y-%m-%d %H:%M:%S'))"
           git push https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git HEAD:main || \
           echo "⚠️ Push gagal, workflow tetap selesai."
         # <-- step ini commit & push files.json ke main
