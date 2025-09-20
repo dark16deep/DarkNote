@@ -27,47 +27,52 @@
       <a href="/index.html" style="text-decoration:none;">
         <span class="brand">ƊƛƦƘƝƠƬЄ</span>
       </a>
-      </div>
-      <div class="menu">≡</div>
+    </div>
+    <div class="menu">≡</div>
   </div>
 
   <!-- Theme Buttons -->
   <div id="theme-buttons-container"></div> 
 
-<!-- Aplikasi Section -->
-<div class="card">
-  <h2>Aplikasi</h2>
-  <div id="aplikasi-list"></div>
-  <a href="aplikasi.html" class="read-more-btn">Selengkapnya</a>
-</div>
+  <!-- Aplikasi Section -->
+  <div class="card-horizontal">
+    <h2>Aplikasi</h2>
+    <!-- <div id="aplikasi-list">{{APLIKASI_FILES}}</div> -->
+    <a href="/aplikasi.html" class="read-more-btn">Lihat & Unduh</a>
+  </div>
 
-<!-- Configs Section -->
-<div class="card">
-  <h2>Configs</h2>
-  <div id="configs-list"></div>
-  <a href="configs.html" class="read-more-btn">Selengkapnya</a>
-</div>
+  <!-- Configs Section -->
+  <div class="card-horizontal">
+    <h2>Config</h2>
+    <!-- <div id="configs-list">{{CONFIGS_FILES}}</div> -->
+    <a href="/configs.html" class="read-more-btn">Lihat & Unduh</a>
+  </div>
 
-<!-- Scripts Section -->
-<div class="card">
-  <h2>Scripts</h2>
-  <div id="scripts-list"></div>
-  <a href="scripts.html" class="read-more-btn">Selengkapnya</a>
-</div>
+  <!-- Scripts Section -->
+  <div class="card-horizontal">
+    <h2>Skrip</h2>
+    <!-- <div id="scripts-list">{{SCRIPTS_FILES}}</div> ---->
+    <a href="/scripts.html" class="read-more-btn">Lihat & Unduh</a>
+  </div>
+
+  <!-- Arsip Section -->
+  <div class="card-horizontal">
+    <h2>Arsip</h2>
+    <!-- <div id="arsip-list">{{ARSIP_FILES}}</div> -->
+    <a href="/arsip.html" class="read-more-btn">Lihat & Unduh</a>
+  </div>
+
+  <!-- Video Section -->
+  <div class="card-horizontal">
+    <h2>Video</h2>
+    <!--- <div id="video-list">{{VIDEO_FILES}}</div> ---->
+    <a href="/video.html" class="read-more-btn">Lihat & Unduh</a>
+  </div>
 
   <!-- Footer -->
   <div class="footer">
     COPYRIGHT ©2025 <a href="/index.html" style="text-decoration:none;">ƊƛƦƘƝƠƬЄ</a> BY AANRISKI™
   </div>
-
-
-<!-- Script untuk load list -->
-<script src="js/list.js"></script>
-<script>
-  loadFiles("aplikasi", "aplikasi-list", 5);
-  loadFiles("configs", "configs-list", 5);
-  loadFiles("scripts", "scripts-list", 5);
-</script>
 
   <!-- Script Load More -->
   <script>
@@ -93,9 +98,11 @@
       });
     }
 
-    setupLoadMore('configs-list', 'load-configs-btn', 5);
-    setupLoadMore('aplikasi-list', 'load-aplikasi-btn', 5);
-    setupLoadMore('scripts-list', 'load-scripts-btn', 5);
+    setupLoadMore('configs-list', 'load-configs-btn', 1);
+    setupLoadMore('aplikasi-list', 'load-aplikasi-btn', 1);
+    setupLoadMore('scripts-list', 'load-scripts-btn', 1);
+    setupLoadMore('arsip-list', 'load-arsip-btn', 1);
+    setupLoadMore('video-list', 'load-video-btn', 1);
   </script>
 
 </body>
