@@ -9,7 +9,7 @@ echo "🔹 Memeriksa perubahan lokal..."
 git stash push -m "auto-stash before pull" || true
 
 echo "🔹 Menarik update terbaru dari GitHub..."
-git pull --rebase origin main || true
+# git pull --rebase origin main || true
 
 # Apply kembali stash jika ada
 git stash pop || true
